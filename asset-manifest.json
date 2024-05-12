@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Personal-Finance/static/css/main.e6c13ad2.css",
+    "main.js": "/Personal-Finance/static/js/main.219fbc3e.js",
+    "index.html": "/Personal-Finance/index.html",
+    "main.e6c13ad2.css.map": "/Personal-Finance/static/css/main.e6c13ad2.css.map",
+    "main.219fbc3e.js.map": "/Personal-Finance/static/js/main.219fbc3e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.219fbc3e.js"
+  ]
+}
