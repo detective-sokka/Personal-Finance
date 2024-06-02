@@ -161,7 +161,7 @@ const OverViewComponent = (props) => {
         />
       )}
       <ExpenseContainer>
-        <ExpenseBox>
+        <ExpenseBox isIncome={false}>
           Expense<span>${props.expense}</span>
         </ExpenseBox>
         <ExpenseBox isIncome={true}>

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 import styled from "styled-components";
 import HomeComponent from "./modules/home";
+import LoginComponent from "./components/LoginComponent";
 
 const Container = styled.div`
   background-color: white;
@@ -46,12 +48,53 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-
 const App = () => {
+
+      // State to manage login status and user's name
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const [error, setError] = useState('');
+  
+    const handleChange = (e) => {
+      setCredentials({
+        ...credentials,
+        [e.target.name]: e.target.value,
+      });
+    };
+  
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post('http://localhost:3000/login', credentials);
+        if (response.data.success) {
+          setUserName(response.data.username);
+          setIsLoggedIn(true);
+          setError('');
+        }
+      } catch (error) {
+        setError('Invalid username or password');
+      }
+    };
+  
+    const handleLogout = () => {
+      setUserName('');
+      setIsLoggedIn(false);
+      setCredentials({ username: '', password: '' });
+      setError('');
+    };
+    
   return (
     <Container>
       <Navbar>
-        <Button>Login</Button>
+      {isLoggedIn ? (
+          <div>
+            <p>Hello, {userName}!</p>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <Button onClick={handleLogin}>Login</Button>
+        )}
       </Navbar>
       <Header>Expense Tracker</Header>
       <HomeComponent />
