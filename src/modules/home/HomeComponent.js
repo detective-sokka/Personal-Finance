@@ -37,18 +37,10 @@ const HomeComponent = (props) => {
   const addTransaction = async (payload) => {
     console.log("addTransaction() payload parameter : ", payload);
     try {
-      const response = await axios.post(
-        "http://localhost:9001/transactions",
-        payload
-      );
-
-      if (response.status === 200 || response.status === 201) {
         const transactionArray = [...transactions];
         transactionArray.push(payload);
         updateTransaction(transactionArray);
-      } else {
-        console.error("Failed to add transaction:", response.data);
-      }
+
     } catch (error) {
       console.error("Error adding transaction:", error);
     }
